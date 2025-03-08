@@ -1,17 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
-// type User = {
-//   id: string;
-//   name: string;
-//   avatar: string;
-// };
-
-// interface is used for defining only object type while not the case with type
-interface User {
-  id: string;
-  name: string;
-  avatar: string;
-}
+import { type User } from './user.model';
 
 @Component({
   selector: 'app-user',
