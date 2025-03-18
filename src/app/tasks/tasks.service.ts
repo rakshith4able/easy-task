@@ -1,7 +1,9 @@
+import { Injectable } from '@angular/core';
 import { type NewTaskData } from './task/task.model';
 
-class TasksService {
-  private tasks = (tasks = [
+@Injectable({ providedIn: 'root' })
+export class TasksService {
+  private tasks = [
     {
       id: 't1',
       userId: 'u1',
@@ -25,7 +27,7 @@ class TasksService {
         'Prepare and describe an issue template which will help with project management',
       dueDate: '2024-06-15',
     },
-  ]);
+  ];
 
   getUserTasks(userId: string) {
     return this.tasks.filter((task) => task.userId === userId);
