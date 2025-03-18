@@ -13,7 +13,6 @@ export class NewTaskComponent {
   @Input({ required: true }) userId!: string;
 
   @Output() close = new EventEmitter<void>();
-  @Output() add = new EventEmitter<NewTaskData>();
 
   private tasksService = inject(TasksService);
 
