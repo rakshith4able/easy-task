@@ -13,9 +13,4 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  selectedUserId?: string;
-
-  onSelectUser(id: string) {
-    this.selectedUserId = id;
-  }
 }

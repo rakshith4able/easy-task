@@ -1,5 +1,5 @@
-<app-card [routerLink]="['tasks', user.id]">
-  <button (click)="onSelectUser(user.id)" [class.active]="selected">
+<app-card>
+  <button [routerLink]="['tasks', user.id]" routerLinkActive="selected">
     <img [src]="imagePath" [alt]="user.name + 'picture'" />
     <span>{{ user.name }}</span>
   </button>
