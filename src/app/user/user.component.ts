@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { type User } from './user.model';
 import { CardComponent } from '../shared/card/card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user',
-  imports: [CardComponent],
+  imports: [CardComponent, RouterLink],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })

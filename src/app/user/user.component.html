@@ -1,4 +1,4 @@
-<app-card>
+<app-card [routerLink]="['tasks', user.id]">
   <button (click)="onSelectUser(user.id)" [class.active]="selected">
     <img [src]="imagePath" [alt]="user.name + 'picture'" />
     <span>{{ user.name }}</span>

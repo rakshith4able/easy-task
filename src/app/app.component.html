@@ -11,10 +11,7 @@
     </li>
     }
   </ul>
-
-  @if(selectedUser){
-  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" />
-  }@else {
-  <p>User Not Selected</p>
-  }
+  <div>
+    <router-outlet />
+  </div>
 </main>
