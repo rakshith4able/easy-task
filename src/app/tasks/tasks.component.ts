@@ -1,9 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
-import { type NewTaskData } from './task/task.model';
+
 import { TasksService } from './tasks.service';
 import { DUMMY_USERS } from '../dummy-users';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
@@ -11,10 +13,28 @@ import { DUMMY_USERS } from '../dummy-users';
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
-export class TasksComponent {
-  @Input({ required: true }) userId!: string;
+export class TasksComponent implements OnInit {
+  // @Input({ required: true }) userId!: string;
+  userId: string = '';
+
+  private activatedRoute = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef);
 
   constructor(private tasksService: TasksService) {}
+
+  ngOnInit(): void {
+    const subscription = this.activatedRoute.paramMap
+      .pipe(map((paramsMap) => paramsMap.get('userId')))
+      .subscribe({
+        next: (userId) => {
+          this.userId = userId || '';
+        },
+      });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
+  }
 
   users = DUMMY_USERS;
 
@@ -33,11 +53,6 @@ export class TasksComponent {
   }
 
   onCloseAddTask() {
-    this.isAddingTask = false;
-  }
-
-  onAddTask(taskData: NewTaskData) {
-    this.tasksService.addTask(taskData, this.userId);
     this.isAddingTask = false;
   }
 }
