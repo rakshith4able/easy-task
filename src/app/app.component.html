@@ -8,6 +8,14 @@
     }
   </ul>
   <div>
+    @defer (on timer(1000)) {
     <router-outlet />
+    } @loading (after 100ms; minimum 1s) {
+    <img alt="loading..." src="loading.gif" />
+    }@placeholder {
+    <p>Loading</p>
+    }@error {
+    <p>Failed to load large component.</p>
+    }
   </div>
 </main>
